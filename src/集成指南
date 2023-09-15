@@ -1,0 +1,68 @@
+<!-- https://blog.csdn.net/Rice_w/article/details/131632170 -->
+<!-- https://blog.csdn.net/weixin_39216318/article/details/122497481 -->
+<!-- https://blog.csdn.net/HeXinT/article/details/125082562 -->
+<!-- 以上为集成和集成中遇到的一些问题的帖子 -->
+1.npm install cesium 或者 npm install -S cesium@1.83.0
+2.从node_modules找出cesium文件复制进入public
+3.安装好cesium之后,我们需要打开 vue.config.js这个文件,进行相关配置
+const { defineConfig } = require("@vue/cli-service");
+
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
+
+let cesiumSource = "./node_modules/cesium/Source/";
+const cesiumWorkers = "../Build/Cesium/Workers";
+
+module.exports = defineConfig({
+  transpileDependencies: true,
+  publicPath: "./",
+  outputDir: "dist", // 输出文件目录
+  lintOnSave: false, // eslint 是否在保存时检查 关闭语法检查
+
+  configureWebpack: {
+    output: {
+      sourcePrefix: " ",
+    },
+    amd: {
+      toUrlUndefined: true,
+    },
+    resolve: {
+      alias: {
+        "@": path.resolve("src"),
+        cesium: path.resolve(__dirname, "./node_modules/cesium/"),
+      },
+      fallback: { https: false, zlib: false, http: false, url: false },
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: path.join(cesiumSource, cesiumWorkers), to: "Workers" },
+          { from: path.join(cesiumSource, "Assets"), to: "Assets" },
+          { from: path.join(cesiumSource, "Widgets"), to: "Widgets" },
+          { from: path.join(cesiumSource, "ThirdParty"), to: "ThirdParty" },
+        ],
+      }),
+      new webpack.DefinePlugin({
+        CESIUM_BASE_URL: JSON.stringify("./"),
+      }),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: "@open-wc/webpack-import-meta-loader",
+          },
+        },
+        {
+          test: /\.(glb|gltf)?$/,
+          use: {
+            loader: "url-loader",
+          },
+        },
+      ],
+    },
+  },
+});
+
