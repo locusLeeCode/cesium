@@ -1,0 +1,83 @@
+/* 全局 */
+#app,
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  background-color: #f3f7fe;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:any-link {
+  text-decoration: none;
+}
+
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  box-sizing: border-box;
+  outline: none !important;
+  appearance: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 全局滚动条样式 */
+.scrollable {
+  -webkit-overflow-scrolling: touch;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d5deed;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #d5deed;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}

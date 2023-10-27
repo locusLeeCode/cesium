@@ -9,7 +9,7 @@ const cesiumWorkers = "../Build/Cesium/Workers";
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: "/",
+  publicPath: "./",
   outputDir: "dist", // 输出文件目录
   lintOnSave: false, // eslint 是否在保存时检查 关闭语法检查
 

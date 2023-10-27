@@ -1,23 +1,26 @@
 <template>
-  <Map/>
+  <router-view/>
 </template>
 
-<script>
-import Map from './components/Map.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Map
-  }
+<style lang="less">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-</script>
 
-<style>
-#app,html,body {
- margin: 0px;
- padding: 0px;
- height: 100%;
- width: 100%;
+nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
